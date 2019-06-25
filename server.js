@@ -28,6 +28,8 @@ app.get('/', (req, res)=>{
     res.json(database.users)
 })
 
+app.get('/', (req, res)=> res.json('its working'))
+
 app.post('/signin', (req, res)=> { signin.handleSignin(req, res, bcrypt, db) })
 
 app.post('/register', (req,res)=>{ register.handleRegister(req, res, bcrypt, db) })
@@ -38,6 +40,6 @@ app.put('/image', (req, res)=>{ image.handleImage(req, res, db) })
 
 app.post('/imageurl', (req, res)=>{ image.handleApiCall(req, res) })
 
-app.listen('3000', ()=>{
-    console.log('app working on port 3000')
+app.listen(process.env.PORT || '3000', ()=>{
+    console.log(`app working on port ${process.env.PORT}`)
 })
